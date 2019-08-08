@@ -8,7 +8,7 @@ class Header extends Component {
         <div>
         <Navbar>
             <Navbar.Brand>
-            <FontAwesomeIcon icon="check-circle" size="lg"/> Task Finisher
+                <FontAwesomeIcon icon="tasks" size="lg"/> Minhas Atividades
             </Navbar.Brand>
         </Navbar>
         </div>

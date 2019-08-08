@@ -29,22 +29,22 @@ function CreateTask(props) {
 
     return (
         <div>
-         <Button onClick={e => setShow(true)} variant="dark" className="float-right create_task_btn">+ Tasks</Button>
+         <Button onClick={e => setShow(true)} variant="dark" className="float-right create_task_btn">+ Add Atividade</Button>
    
          <Modal show={show || false} onHide={e => setShow(false)}>
            <Modal.Header closeButton>
              <Modal.Title>Adicionar Item</Modal.Title>
            </Modal.Header>
            <Modal.Body>
-             <Form.Control type="email" placeholder="Enter with your task..." value={title || ''} onChange={e => setTitle(e.target.value)} />
+             <Form.Control type="email" placeholder="Informe a atividade ...." value={title || ''} onChange={e => setTitle(e.target.value)} />
            </Modal.Body>
            <Modal.Footer>
              <Button variant="secondary" onClick={e => setShow(false)}>
-               Close
+               Fechar
              </Button>
              <form onSubmit={handleSubmit}>
                <Button variant="dark" type="submit">
-                 Create
+                 Adicionar
                </Button>
              </form>
            </Modal.Footer>

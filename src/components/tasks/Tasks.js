@@ -23,7 +23,6 @@ class Tasks extends Component {
     this.setState({
       tasks: tasks
     });
-    console.log(tasks);
     
   }
 
@@ -35,14 +34,13 @@ class Tasks extends Component {
     return (
       <Row>
         <Col xs={{ span: 8, offset: 2 }} className="tasks_list">
-          <p className="title">To-do</p>
+          <p className="title">Por Fazer</p>
           <List loadTasks={this.loadTasks} tasks={this.state.tasks.filter((task) => task.done !== true)}/>
           <CreateTask loadTasks={this.loadTasks}/>
         </Col>
         <Col xs={{ span: 8, offset: 2 }} className="tasks_list">
-          <p className="title">Done</p>
+          <p className="title">Concluído</p>
           <List loadTasks={this.loadTasks} tasks={this.state.tasks.filter((task) => task.done == true)}/>
-          <Button variant="red" className='float-right remove_tasks_btn'>Remover Todas</Button>
         </Col>
       </Row>
     );

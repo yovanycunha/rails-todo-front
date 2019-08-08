@@ -1,33 +1,49 @@
-$yellow: #F5DD16;
-$dark-grey: #7C7C7C;
-$light-grey: #BEBEBE;
-$red: #EE4525;
- 
+
+$sandpiper: #F5F2F0;
+$blue-night: #323846;
+$blue-sky: #78DBF3;
+$ice-cold: #C3F7EB;
+$cerise-pink: #EF3A79;
+
+body {
+  background-color: $sandpiper;
+}
+
 .navbar{
-  background-color: $dark-grey;
+  background-color: $blue-night;
   .navbar-brand{
-    color: $yellow !important;
+    color: $ice-cold !important;
   }
+
+  
+}
+
+.footer{
+  margin-top: 10px;
+  text-align: center;
 }
  
 .tasks_list{
+
   margin-top: 40px;
   .title{
     font-size: 22px;
-    color: $dark-grey;
+    color: $blue-night;
     font-weight: 600;
     margin-bottom: 4px;
   }
+  
  
   .create_task_btn{
-    background-color: $dark-grey;
-    border-color: $dark-grey;
+    background-color: $blue-night;
+    border-color: $blue-night;
     font-weight: 500;
     margin-top: 10px;
   }
  
   .card{
-    background-color: $dark-grey;
+    
+    background-color: $blue-night;
     table{
       tbody > tr:nth-child(1) > td{
         border-top: 0;
@@ -37,11 +53,11 @@ $red: #EE4525;
       margin-bottom: 5px;
  
       .check{
-        color: $yellow;
+        color: $blue-sky;
         font-size: 15px;
       }
       .delete{
-        color: white;
+        color: $cerise-pink;
       }
     }
   }
