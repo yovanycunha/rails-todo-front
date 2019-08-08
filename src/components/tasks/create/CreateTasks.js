@@ -3,13 +3,15 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
+const _HEROKU_URL = `https://murmuring-citadel-83821.herokuapp.com/tasks`;
+
 
 function CreateTask(props) {
     const [title, setTitle] = useState('');
     const [show, setShow] = useState('');
 
     const handleSubmit = (async ()=> {
-        await fetch(`http://localhost:3001/tasks`, 
+        await fetch(_HEROKU_URL, 
         {
             method: 'POST',
             headers: {
@@ -31,7 +33,7 @@ function CreateTask(props) {
    
          <Modal show={show || false} onHide={e => setShow(false)}>
            <Modal.Header closeButton>
-             <Modal.Title>New Task</Modal.Title>
+             <Modal.Title>Adicionar Item</Modal.Title>
            </Modal.Header>
            <Modal.Body>
              <Form.Control type="email" placeholder="Enter with your task..." value={title || ''} onChange={e => setTitle(e.target.value)} />
