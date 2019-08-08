@@ -6,8 +6,6 @@ import FormControl from 'react-bootstrap/FormControl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import FormCheck from 'react-bootstrap/FormCheck';
 
-const _HEROKU_URL = `https://murmuring-citadel-83821.herokuapp.com/tasks`;
-
 class UpdateTask extends Component {
     constructor(props) {
         super(props);

@@ -3,7 +3,6 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import List from './list/List';
 import CreateTask from './create/CreateTasks';
-import Button from 'react-bootstrap/Button';
 
 const _HEROKU_URL = `https://murmuring-citadel-83821.herokuapp.com/tasks`;
 
@@ -42,7 +41,7 @@ class Tasks extends Component {
         </Col>
         <Col xs={{ span: 8, offset: 2 }} className="tasks_list">
           <p className="title">Concluídas</p>
-          <List loadTasks={this.loadTasks} tasks={this.state.tasks.filter((task) => task.done == true)}/>
+          <List loadTasks={this.loadTasks} tasks={this.state.tasks.filter((task) => task.done === true)}/>
         </Col>
       </Row>
     );
