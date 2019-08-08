@@ -15,11 +15,25 @@ class UpdateTask extends Component {
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleInputValidation = this.handleInputValidation.bind(this);
     }
 
+    validLength = (input) => {
+        const arrayOfInputs = input.split(" ");
+        const removeWhiteSpaces = arrayOfInputs.filter((c)=>c!=="");
+        return removeWhiteSpaces.length > 0;
+    }
+
+    handleInputValidation = () => {
+        const validLength = this.validLength(this.state.title);
+        return validLength;
+    }
 
     handleSubmit = async () => {
-        await fetch(`https://murmuring-citadel-83821.herokuapp.com/tasks/${this.props.task.id}`, 
+        const isValid = this.handleInputValidation();
+        
+        if (isValid) {
+            await fetch(`https://murmuring-citadel-83821.herokuapp.com/tasks/${this.props.task.id}`, 
             {
                 method: 'PUT',
                 headers: {
@@ -32,6 +46,7 @@ class UpdateTask extends Component {
             })
             this.props.loadTasks(); 
             this.clearInput();
+        }
     }
 
     clearInput = () => {
@@ -75,9 +90,18 @@ class UpdateTask extends Component {
                             checked={this.state.done}
                         />
                     </InputGroup>
-                    <Button onClick={this.handleSubmit} variant="dark" className="update_task_btn">
-                        <FontAwesomeIcon icon="redo-alt"/> Atualizar
-                    </Button>
+                    
+                    {
+                        this.handleInputValidation() ? (
+                            <Button onClick={this.handleSubmit} variant="dark" className="update_task_btn">
+                                <FontAwesomeIcon icon="redo-alt"/> Atualizar
+                            </Button>
+                        ) : (
+                            <Button disabled onClick={this.handleSubmit} variant="dark" className="update_task_btn">
+                                <FontAwesomeIcon icon="redo-alt"/> Atualizar
+                            </Button>
+                        )
+                    }
                     
                 </Form>
             </div>
