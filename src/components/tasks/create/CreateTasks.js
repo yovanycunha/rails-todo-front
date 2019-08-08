@@ -1,57 +1,74 @@
-import React, {useState} from 'react';
-import Modal from 'react-bootstrap/Modal';
+import React, {Component} from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
+import FormControl from 'react-bootstrap/FormControl';
 
 const _HEROKU_URL = `https://murmuring-citadel-83821.herokuapp.com/tasks`;
+class CreateTask extends Component {
+    constructor(props) {
+        super(props);
+        this.state ={
+            title: '',
+            done: false
+        }
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
+    }
 
 
-function CreateTask(props) {
-    const [title, setTitle] = useState('');
-    const [show, setShow] = useState('');
-
-    const handleSubmit = (async ()=> {
+    handleSubmit = async (event) => {
         await fetch(_HEROKU_URL, 
-        {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                task: {title: title, done: false}
+            {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    task: {title: this.state.title, done:false}
+                })
             })
+            this.props.loadTasks();
+            this.clearInput();
+            
+    }
+
+
+    clearInput = () => {
+        this.setState({
+            title: "",
         })
-        setShow(false);
-        setTitle('');
-        props.loadTasks();
-    });
+    }
+    
 
-    return (
-        <div>
-         <Button onClick={e => setShow(true)} variant="dark" className="float-right create_task_btn">+ Add Atividade</Button>
-   
-         <Modal show={show || false} onHide={e => setShow(false)}>
-           <Modal.Header closeButton>
-             <Modal.Title>Adicionar Item</Modal.Title>
-           </Modal.Header>
-           <Modal.Body>
-             <Form.Control type="email" placeholder="Informe a atividade ...." value={title || ''} onChange={e => setTitle(e.target.value)} />
-           </Modal.Body>
-           <Modal.Footer>
-             <Button variant="secondary" onClick={e => setShow(false)}>
-               Fechar
-             </Button>
-             <form onSubmit={handleSubmit}>
-               <Button variant="dark" type="submit">
-                 Adicionar
-               </Button>
-             </form>
-           </Modal.Footer>
-         </Modal>
-       </div>
+    handleInputChange = (event) => {
+        let value = event.target.value;
+        this.setState({
+            title: value
+        });
 
-    )
-};
+    }
+    render() {
+        return (
+            <div>
+                <Form inline className="justify-content-end">
+                    <InputGroup className="create_task_input">
+                        <FormControl
+                            name="newTask"
+                            type="email"
+                            placeholder="Nova Atividade ..."
+                            value={this.state.title}
+                            onChange={this.handleInputChange}
+                        />
+                    </InputGroup>
+                    <Button onClick={this.handleSubmit} variant="dark" className="create_task_btn">
+                        +
+                    </Button>
+                </Form>
+            </div>
+        );
+        }
+}
 
 export default CreateTask;

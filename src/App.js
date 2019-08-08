@@ -7,8 +7,8 @@ import Header from './components/header/Header';
 import Footer from "./components/footer/Footer";
 
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faCheckCircle, faTrashAlt, faTasks } from '@fortawesome/free-solid-svg-icons'
-library.add(faCheckCircle, faTrashAlt, faTasks)
+import { faCheckCircle, faTrashAlt, faTasks, faPlusCircle, faPen, faRedoAlt } from '@fortawesome/free-solid-svg-icons'
+library.add(faCheckCircle, faTrashAlt, faTasks, faPlusCircle, faPen, faRedoAlt)
 
 function App() {
   return (

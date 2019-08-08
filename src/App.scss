@@ -4,6 +4,9 @@ $blue-night: #323846;
 $blue-sky: #78DBF3;
 $ice-cold: #C3F7EB;
 $cerise-pink: #EF3A79;
+$green: #A3EB6A;
+$caribean-blue: #28BFDB;
+$whitestorm: #6C98C6;
 
 body {
   background-color: $sandpiper;
@@ -14,8 +17,6 @@ body {
   .navbar-brand{
     color: $ice-cold !important;
   }
-
-  
 }
 
 .footer{
@@ -25,6 +26,8 @@ body {
  
 .tasks_list{
 
+  transition: all 10s;
+
   margin-top: 40px;
   .title{
     font-size: 22px;
@@ -33,13 +36,37 @@ body {
     margin-bottom: 4px;
   }
   
+  .create_task_input{
+    margin-bottom: 4px;
+  }
+
+  .update-field {
+    min-width: 300px;
+    display: block;
+    display: inline-flex;
+    margin: 7px 0;
+  }
+
+    .update_task_title{
+      min-width: 100%;
+      margin: 4px 0;
+  }
  
   .create_task_btn{
     background-color: $blue-night;
     border-color: $blue-night;
     font-weight: 500;
-    margin-top: 10px;
+    margin-bottom: 4px;
   }
+
+  .update_task_btn{
+    border-color: $sandpiper;
+    background-color: $blue-night;
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+
+  
  
   .card{
     
@@ -53,11 +80,19 @@ body {
       margin-bottom: 5px;
  
       .check{
-        color: $blue-sky;
+        color: $green;
         font-size: 15px;
       }
       .delete{
         color: $cerise-pink;
+      }
+      .edit{
+        color: $whitestorm;
+      }
+
+      .act-btn {
+        background-color: transparent;
+        border: none;
       }
     }
   }
