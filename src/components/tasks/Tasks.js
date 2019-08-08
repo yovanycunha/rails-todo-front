@@ -34,12 +34,14 @@ class Tasks extends Component {
     return (
       <Row>
         <Col xs={{ span: 8, offset: 2 }} className="tasks_list">
-          <p className="title">Por Fazer</p>
+          <Row>
+            <Col><p className="title">Por Fazer</p></Col>
+            <Col><CreateTask loadTasks={this.loadTasks}/></Col>
+          </Row>
           <List loadTasks={this.loadTasks} tasks={this.state.tasks.filter((task) => task.done !== true)}/>
-          <CreateTask loadTasks={this.loadTasks}/>
         </Col>
         <Col xs={{ span: 8, offset: 2 }} className="tasks_list">
-          <p className="title">Concluído</p>
+          <p className="title">Concluídas</p>
           <List loadTasks={this.loadTasks} tasks={this.state.tasks.filter((task) => task.done == true)}/>
         </Col>
       </Row>

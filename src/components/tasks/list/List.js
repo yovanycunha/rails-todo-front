@@ -1,14 +1,23 @@
 import React, { Component } from 'react';
-import Row from 'react-bootstrap/Row';
 import Card from 'react-bootstrap/Card';
 import Table from 'react-bootstrap/Table';
+import Accordion from 'react-bootstrap/Accordion';
+import Button from 'react-bootstrap/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-  
+
+
+import UpdateTask from '../update/UpdateTask';
 
 class List extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      open: false,
+    }
+  }
+
 async checkTask(task) {
-  let form = {'task': {'done': 'true'}}
   await fetch(`https://murmuring-citadel-83821.herokuapp.com/tasks/${task.id}`, 
   {
     method: 'PUT',
@@ -29,10 +38,17 @@ async deleteTask(task) {
     this.props.loadTasks();
   }
 }
+
+toggle(index) {
+  this.setState({
+    open: !this.state.open,
+  })
+}
   
   render() {
     return (
       <div>
+        
         <Card>
           <Card.Body>
           <Table responsive>
@@ -42,17 +58,30 @@ async deleteTask(task) {
                   <td className="col-md-10">{task.title}</td>
                   <td>
                     { 
-                      task.done == false
-                      ? <a className="check" href="#">
+                      task.done === false
+                      ? <Button className="check act-btn" href="#">
                           <FontAwesomeIcon icon="check-circle" onClick={() => this.checkTask(task)} size='lg'/>
-                        </a> 
+                        </Button> 
                       : null
                     }
                   </td>
                   <td>
-                    <a className="delete" href="#" onClick={() => this.deleteTask(task)}>
+                    {
+                      <Accordion>
+                      <Accordion.Toggle className="edit act-btn" eventKey="0" as={Button}>
+                        <FontAwesomeIcon icon="pen" size="lg"/>
+                      
+                      </Accordion.Toggle>
+                      <Accordion.Collapse eventKey="0">
+                        <UpdateTask loadTasks={this.props.loadTasks} task={task}/>
+                      </Accordion.Collapse>
+                      </Accordion>
+                    }
+                  </td>
+                  <td>
+                    <Button className="delete act-btn" href="#" onClick={() => this.deleteTask(task)}>
                       <FontAwesomeIcon icon="trash-alt"/>
-                    </a>
+                    </Button>
                   </td>
                 </tr>;
               })}
